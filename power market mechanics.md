@@ -31,7 +31,7 @@ Planning decisions of producers : portfolios extension for exemple.
 
 how it operates when having many ‘participants’ that makes their own profit-maximizing. 
 
-electricity itself : 
+electricity can't be stored at larger scale as of today. --> changing. possible to transform eklecricity unde other forms
 
 ###  market
 supply-curve : a non decreasing curve so we rank sellers based on the based on the least-cost. “Merit order principle"
@@ -51,5 +51,9 @@ equilibrium point = social welfare is maximized. market clearing price and quant
 based on the equilibium point --> uniform price. qtes are traded at a determined price. and we pay all sellers at the same price. (electrcity markets are often not uniform pricing )
 
 pay-as-bid (other schema) : you pay whatever you bet for. 
+
+usually we bid for operational cost possible to bid negatives prices based on tarifs or government rules may support to balance out the low cost
+
+power quality : 
 
 
