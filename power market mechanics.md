@@ -48,12 +48,25 @@ the area below the demand cruve = total value of utilities (or commodities), sim
 we want to increase blue, decrease red. leads to social welfare (surplus) area between supply curve and demand curve. by **maximizing social welfare**, the total value of commodities for consumersis maximized, while the total cost for suppliers is minimized—resulting insatisfaction for both the demand and supply sides.
 
 equilibrium point = social welfare is maximized. market clearing price and quantity are determined. (terminology comes from game theory)
-based on the equilibium point --> uniform price. qtes are traded at a determined price. and we pay all sellers at the same price. (electrcity markets are often not uniform pricing )
+based on the equilibium point --> uniform price. qtes are traded at a determined price. and we pay all sellers at the same price. (electrcity markets are often not uniform pricing)
 
-pay-as-bid (other schema) : you pay whatever you bet for. 
+![alt text](img/demand-supply.png)
+We do not want to supply all demand. E.g. in this case we see that the demand on the right hand side of the equilibirum (and below) exists but i do not supply. that demande is not willing to pay enough. No free market. 
 
-usually we bid for operational cost possible to bid negatives prices based on tarifs or government rules may support to balance out the low cost
+renewable generators = operational cost = 0 
+the gas market price influence what the supply price of the gas generators are willing to pay. 
+ 
 
-power quality : 
+pay-as-bid (other schema) : you pay whatever you bet for. (e.g. w/ wind farms)
 
+in a perfect market, we bid the true op costs. it's  possible to bid negatives prices based on tarifs or government rules may support to balance out the low cost
 
+electricity market is different from other commodity markets
+- not possible to store on a large scale.
+- electricity demand is highly inelastic to price (this is changing !) = people pay whatever the price 
+- physics governed (kirchoff's, etc)
+- remark : it's possible to transform/convert it to have it stored (e.g. hydrogen, heat). either convert back (efficiency losses) or use it = integrated energy grid or multi-carrier energy systems.
+
+market clearing algorithms = finding equilibrium supply-demand. the market clearing outcomes are: clearing price ($/MWh), generation/consumption level of each producer/demand (MW)
+
+offer and bids. generators submitt they willing pric to sell = offer, while bid for demand. 
