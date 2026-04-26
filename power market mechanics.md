@@ -2,7 +2,8 @@
 46755
 Jalal Kazempour (DTU), Spring 2025 semester
 
-## introduction 
+## introduction (lecture 1)
+[[31761 – Lecture 12b.pdf]]
 
 ### electric power systems
 	- generators (conventional (choal, gaz) or renewable (solar farms, wind etc))
@@ -34,12 +35,12 @@ how it operates when having many ‘participants’ that makes their own profit-
 electricity can't be stored at larger scale as of today. --> changing. possible to transform eklecricity unde other forms
 
 ###  market
-supply-curve : a non decreasing curve so we rank sellers based on the based on the least-cost. “Merit order principle"
+- supply-curve : a non decreasing curve so we rank sellers based on the based on the least-cost. “Merit order principle"
+- demand curve : ( non-increasing curve) 
+- utility = value of product for a given buyer. = profit (value-cost)*qte [control that formula is correct ?]
 
-utility = value of product for a given buyer. = profit (value-cost)*qte [control that formula is correct ?]
-demand curve ( non-increasing curve) 
 
-intersection of the demand and supply curve : equilibrium price (**market-clearing**); carried by a market operator (non profitable) 
+- intersection of the demand and supply curve : equilibrium price (**market-clearing**); carried by a market operator (non profitable) 
 
 the area below the demand cruve = total value of utilities (or commodities), similarly represents the total cost for the demand curve area.
 ![alt text](img/image.png) 
@@ -70,3 +71,50 @@ electricity market is different from other commodity markets
 market clearing algorithms = finding equilibrium supply-demand. the market clearing outcomes are: clearing price ($/MWh), generation/consumption level of each producer/demand (MW)
 
 offer and bids. generators submitt they willing pric to sell = offer, while bid for demand. 
+
+## fundamentals of electricity markets (lecture 2)
+
+### key topics from the previous lecture
+- Centralized power systems vs. electricity markets
+- Supply and demand curves and their role in market dynamics
+- Merit-order principle: Least-cost dispatch in the supply side
+- Market clearing: Determining prices and quantities based on supply and
+demand curves
+- Social welfare: Definition and significance in market efficiency
+- Equilibrium concepts: Market-clearing price and traded quantities
+- Pricing mechanisms: Uniform pricing (single price for everybody) vs. pay-as-bid pricing (what you offer)
+- Unique characteristics of electricity markets compared to other commodity
+markets: demand elasticity aspect, physical constraints and not storable.
+
+market clearing algorithm = optimization problem
+
+### goals - agenda 
+- market actors
+- electricity markets
+- usa vs eu electricity markets
+- linear optimzation formulation 
+
+### market actors
+- **power producers** : conventional gen unit (coal, gas, combined heat, CHP, nuclear, etc), renewbable (hydro, wind, etc.) can be constructed as portfolio. 
+- **power demands** : large consumers (industrial plants), retailers (intermediate market actor who purachses electricity in bulk from electricity market and sell it to large number of small scale consumers)
+- **market operators** : non profit entity. clears the market by socializing social welfare. 
+
+we need other actors because market clearing outcomes = fiancial contracts (buying/selling). But who is responsible for *operating* the system. For that we need are system operator: 
+- **TSO** (transmission system operator) :reponsable for safe operation in the *high-voltage transmission level* where the gris is *meshed*. They ensure system stability (frequency stability, voltage stability, etc   ), supply security, real-time power. (swissgrid in CH, REN in PRTGL. entsoe-e is an TSO on a european level. it exists for coordination of the TSO). TSOs are called ISO in USA. 
+- **DSO** (distribution system opertio): responsable for safe operation on *mid and low voltage* (often radial grid). Every DSOs has its own territory. 
+- **tso-dso coordinator** : coordination mechanism. they need to work together.
+
+- **market regulator** for short and long run. responisble for monitoring market performance.
+
+- **other market actors** : traders (both pysical or purely financial (exemple buy head market and sell day market)), Balancing Responsible Parties (BRPs), flexibility aggregators.
+
+### types of electricity market
+#### capacity market (MW)
+designed to ensure *sufficient* generation capacity is available to maintain supply security and reliable operation.
+
+any producer submitting an offer to the electricity market is *elligble* for compensation
+
+capacity payment serve as an incentive for power producers to invest in new gen assets
+#### energy market (MWh)
+
+#### 
