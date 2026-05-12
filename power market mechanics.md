@@ -116,5 +116,93 @@ any producer submitting an offer to the electricity market is *elligble* for com
 
 capacity payment serve as an incentive for power producers to invest in new gen assets
 #### energy market (MWh)
+the main market where energy (electricity) is traded. temporal sequence of energy markets :
 
-#### 
+- **futures market** : long-term contracts, up to 6 years ahead. financial hedging, risk management.
+- **day-ahead market** (spot market) : cleared 12-36h before delivery. e.g. Nord Pool Elspot. auction-based, one clearing per day for all hours of the next day.
+- **intraday market** : after day-ahead, closer to real-time. continuous trading + discrete auctions. e.g. Nord Pool Elbas. allows adjustments (e.g. updated wind forecasts).
+- **balancing market** (real-time / imbalance market) : very close to real-time. TSO activates reserves to maintain system balance. settles deviations from day-ahead/intraday contracts.
+
+#### ancillary service (reserve) markets
+ensure system reliability and stability. reserves are capacity booked to be activated if needed in the balancing stage.
+
+- **primary reserves (FCR)** : frequency containment reserve, activated within ~30 seconds. automatic response.
+- **secondary reserves (aFRR)** : automatic frequency restoration reserve, activated within ~5 min.
+- **tertiary reserves (mFRR)** : manual frequency restoration reserve, activated within ~12.5 min.
+- also : black-start capability, reactive power / voltage control.
+
+### from market to operation
+by the market operator (e.g. Nord Pool) :
+day-ahead market → contracts → intraday market → modified contracts
+
+then TSO (e.g. Energinet) checks : do these contracts ensure safe operation of the system?
+- if no → balancing market → actual operation of the system
+- ancillary service (reserve) markets : reserve capacities booked to be activated later (if needed) in the balancing stage
+
+(day-ahead = lecture 3, intraday & balancing = lecture 5, ancillary service = lecture 6)
+
+### european vs US electricity markets
+
+#### market and system operation
+- **EU** : market operators and system operators are **separate** entities (e.g. Nord Pool = market operator, Energinet = TSO)
+- **US** : an Independent System Operator (ISO) is responsible for **both** clearing the market and operating the system (e.g. CAISO, PJM)
+
+#### network modeling for market clearing
+- **EU** : transmission network modeled in a simplified manner using a **zonal** representation within day-ahead and intraday market-clearing. no detailed network modeling within each bidding zone.
+- **US** : transmission network fully modeled using a **nodal** representation and a linearized power flow model in all market-clearing problems.
+
+#### energy and reserve markets
+- **EU** : reserve markets are cleared **separately** by TSOs (e.g. Energinet) *before* the day-ahead energy market is cleared by the market operator.
+- **US** : a **joint** energy and reserve market exists in the day-ahead time stage, cleared by the ISO → energy and reserve dispatch **co-optimization** problem.
+
+#### complex offers vs complex market clearing
+- **EU** : market actors **internalize** their technical constraints (ramp limits, min production, min up/down time) within their own offers/bids. they offer/bid for their entire portfolio within a bidding zone (not per asset). → complex orders (e.g. block orders in Nord Pool), but market-clearing process remains relatively simple.
+- **US** : market actors **submit** all their technical constraints to the market. → market-clearing problem becomes a unit commitment problem with on/off (0/1 binary) variables. → complex market-clearing, but simple bids/offers. introduces pricing challenges due to binary variables.
+
+### market-clearing as a linear optimization problem
+
+#### illustrative example
+W1 (wind farm) : forecast 20 MW, offer price €0/MWh
+G1 (conventional) : capacity 50 MW, offer price €20/MWh
+G2 (conventional) : capacity 100 MW, offer price €30/MWh
+total demand = 40 MW (price-inelastic)
+
+supply curve (merit order) : W1 first (0€), then G1 (20€), then G2 (30€)
+
+market-clearing outcomes : W1 = 20 MW, G1 = 20 MW, G2 = 0 MW, clearing price = €20/MWh
+
+#### optimization formulation
+minimize total production cost (objective function) :
+min 0·p^W1 + 20·p^G1 + 30·p^G2
+
+subject to (constraints) :
+- generation limits : 0 ≤ p^W1 ≤ 20, 0 ≤ p^G1 ≤ 50, 0 ≤ p^G2 ≤ 100
+- power balance : 40 - p^W1 - p^G1 - p^G2 = 0
+
+primal variables = p^W1, p^G1, p^G2 (production levels)
+dual variables (lagrange multipliers) = μ (lower/upper bounds), λ (power balance)
+
+**λ (dual of power balance) = market-clearing price** under uniform pricing.
+
+#### lagrangian function and KKT conditions
+standard form : min f(x), s.t. h(x)=0 : λ, g(x)≤0 : μ
+
+lagrangian : L(x,λ,μ) = f(x) + λᵀh(x) + μᵀg(x)
+
+KKT (Karush-Kuhn-Tucker) optimality conditions :
+- ∂L/∂x = 0 (stationarity)
+- h(x) = 0 (primal feasibility - equality)
+- 0 ≤ -g(x) ⊥ μ ≥ 0 (complementary slackness + dual feasibility)
+- λ ∈ free (no sign restriction on equality dual)
+
+complementary slackness : g(x)·μ = 0 → either the constraint is active or the dual is zero.
+
+#### verifying market-clearing price via KKT
+use the marginal producer (most expensive dispatched gen) to verify price.
+G1 is marginal (partially dispatched, 0 < p^G1 < 50) → both bounds inactive → μ^G1 = 0, μ̄^G1 = 0
+from KKT stationarity for G1 : 20 + μ̄^G1 - μ^G1 - λ = 0 → λ = 20 → confirms market-clearing price = €20/MWh
+
+#### different demand scenarios
+- demand = 10 MW → only W1 dispatched (10 MW), price = €0/MWh (wind is marginal)
+- demand = 70 MW → W1=20, G1=50 (fully dispatched), G2=0 → price ∈ [20,30] (price multiplicity, demand falls exactly at boundary between G1 and G2)
+- demand = 110 MW → W1=20, G1=50, G2=40 → price = €30/MWh (G2 is marginal)
